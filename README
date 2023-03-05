@@ -1,0 +1,67 @@
+Algorytmy i Struktury Danych, projekt pt. "Implementacja list z przeskokami"
+
+Skip List to probabilistyczna struktura danych, która umożliwia usuwanie,
+znajdowanie i dodawanie elementów średnio w czasie O(log n), w najgorszym wypadku O(n).
+Przy użyciu przeskoków, możemy szybko i efektywnie przeszukiwać te strukture danych.
+
+SkipNode - 
+    Pola:
+        value - wartosc przechowywana w danym elemencie listy.
+
+        forward - tablica przechowujaca wskazniki do kolejnych elementow na różnych poziomach
+
+
+    Metody:
+        SkipNode(T value, int level) - konstruktor przyjmujacy dwa argumenty, wartosc i poziom.
+
+        ~SkipNode() - dekonstruktor, usuwa tablice forward.
+
+SkipList - 
+    Pola:
+        head - wskaznik do pustej głowy listy typu SkipNode, symbolicznie przyjmuje wartość -1, 
+        reszta elementów listy musi przyjmować wartości >= 0.
+
+        MAXLVL - liczba calkowita, maksymalny poziom jaki moze przyjac element na liscie.
+
+        P - liczba zmiennoprzecinkowa używana do losowania poziomu.
+
+        level - liczba calkowita, aktualny poziom listy.
+
+    Metody:
+        SkipList() - domyslny konstruktor, inicjuje SkipListe z pustą głową, maksymalnym poziomem równym 2 i P = 0.5.
+
+        SkipList(int MAXLVL, float P) - konstruktor przyjmujacy dwa argumenty, maksymalny poziom listy i P. Tworzy pustą głowe o wartości -1.
+
+        ~SkipList() - dekonstruktor, usuwa wszystkie węzły.
+
+        int random_level() - funkcja zwracajaca poziom dla nowo tworzonego elementu listy. Używa funkcji rand do wygenerowania liczby z przedziału <0;1) i porównuje ją ze zmienną P. Jeśli P jest większe od wygenerowanej liczby zwiększamy poziom i powtarzamy losowanie dopóki poziom nie będzie równy MAXLVL.
+
+        void insert(const T &new_value) - funkcja służąca do dodania nowego elementu do listy.
+
+        bool contains(const T &new_value) - funkcja sprawdzająca czy element przechowujący daną wartość istnieje na liście. Jeśli tak to zwraca "true" w przciwnym razie zwraca "false".
+
+        int remove(const T &delete_value) - funkcja służąca do usuwania elementu przechowującego daną wartość z listy. Jeśli żaden element listy nie przechowuje takiej wartości funkcja zwraca -1. Jeśli usuwanie przebiegnie pomyślnie funkcja zwraca 1.
+
+        void display() - funkcja slużąca do wyświetlenia listy na wyjsciu standardowym.
+
+Testy:
+    insert_and_contains_test() - testuje metode contains.
+
+    remove_test() - testuje metode remove.
+    
+    display_test() - testuje wyswietlanie listy na wyjsciu standardowym.
+    
+    copy_test() - testuje konstruktor kopiujacy i operator kopiowania.
+
+
+
+Użyte materiały:
+https://www.youtube.com/watch?v=NDGpsfwAaqo
+https://www.geeksforgeeks.org/skip-list-set-2-insertion/
+https://en.wikipedia.org/wiki/Skip_list
+https://www.youtube.com/watch?v=Q9MdwzewSZg
+
+
+
+
+
